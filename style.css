@@ -1,0 +1,137 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.guide {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #555;
+}
+
+#result {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#result .emoji {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  font-size: 2.5rem;
+}
+
+#result #next {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+
+  /* ✅ centrer le bouton */
+  display: block;
+  margin: 0 auto; /* centre horizontalement */
+}
+
+#result #next:hover {
+  background-color: #555;
+}
+
+.draw {
+  color: #f39c12;
+}
+
+.lose {
+  color: #e74c3c;
+}
+
+.win {
+  color: #27ae60;
+}
+
+#choices {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap; /* pour les petits écrans */
+}
+
+.btn {
+  display: inline-block;
+  padding: 1.5rem;
+  border: 2px solid #333;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  font-size: 1.2rem;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* ✅ Responsive pour petits écrans */
+@media (max-width: 600px) {
+  .guide {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  #result .emoji {
+    gap: 1rem;
+    font-size: 2rem;
+  }
+
+  #result #next {
+    width: 80%;
+    font-size: 1rem;
+  }
+
+  .score {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
