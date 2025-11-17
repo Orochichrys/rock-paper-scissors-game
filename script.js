@@ -159,7 +159,7 @@ function initializeOnlineMode() {
     
     // Si socket est déjà initialisé, on ne le refait pas
     if (typeof io !== 'undefined') {
-       socket = io('VOTRE_URL_RENDER');
+       socket = io('https://mon-ppc-server.onrender.com');
     } else {
         console.error("Socket.IO n'est pas chargé. Assurez-vous que le script Socket.IO est inclus dans votre HTML.");
         return;
