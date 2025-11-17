@@ -4,7 +4,15 @@ const socketIo = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, {
+  cors: {
+    // ✅ Autoriser explicitement votre domaine Vercel
+    // Ajoutez également http://localhost:3000 si vous faites du développement local
+    origin: ["https://rock-paper-scissors-game-nine-orcin.vercel.app"],
+    methods: ["GET", "POST"], // Méthodes HTTP autorisées
+    credentials: true
+  }
+});
 const port = process.env.PORT || 3000;
 const WINNING_SCORE = 5; // Nouveau: Condition de victoire
 
