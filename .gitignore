@@ -1,0 +1,14 @@
+# Dépendances Node.js
+/node_modules
+
+# Fichiers de log et de cache
+npm-debug.log*
+.DS_Store
+*.log
+/build
+/dist
+.env
+
+# Fichiers Vercel/Netlify
+.vercel
+.netlify

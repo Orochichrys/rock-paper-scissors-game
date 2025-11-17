@@ -1,0 +1,26 @@
+{
+  "name": "rock-paper-scissors-game",
+  "version": "1.0.0",
+  "description": "Un petit jeu **Pierre – Papier – Ciseaux** moderne, coloré et interactif, développé en **HTML, CSS et JavaScript**.  \r Le joueur affronte l’ordinateur dans un duel aléatoire avec un système de score et une interface animée.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Orochichrys/rock-paper-scissors-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Orochichrys/rock-paper-scissors-game/issues"
+  },
+  "homepage": "https://github.com/Orochichrys/rock-paper-scissors-game#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}

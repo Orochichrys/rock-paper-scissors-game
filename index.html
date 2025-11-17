@@ -3,25 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pierre Papier Ciseaux (Multi)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <div class="score">
-            <h1 id="ordiScoreDisplay">Ordinateur: 0</h1>
-            <h1 id="playerScoreDisplay">Moi: 0</h1>
+        <div id="mode-selector">
+            <h2>Choisissez votre mode de jeu :</h2>
+            <button id="mode-offline" class="btn mode-btn">Mode Contre l'Ordinateur (Hors Ligne)</button>
+            <button id="mode-online" class="btn mode-btn">Mode Multijoueur (En Ligne)</button>
         </div>
-        <h1 class="guide">Fais ton choix entre Pierre (👊), Papier (✋) et Ciseaux (✌)</h1>
-        <div id="result" style="display: none;"></div>
-        <div id="choices">
-            <button id="rock" class="btn">✊</button>
-            <button id="paper" class="btn">✋</button>
-            <button id="scissors" class="btn">✌️</button>
+
+        <div id="game-area" style="display: none;">
+            
+            <div class="score">
+                <h1 id="scoreDisplay1">Joueur 1: 0</h1> 
+                <h1 id="scoreDisplay2">Joueur 2: 0</h1>
+            </div>
+            
+            <h1 class="guide">Faites votre choix</h1>
+            
+            <h2 id="status-message" style="display: none;"></h2>
+            
+            <div id="result" style="display: none;"></div>
+            
+            <div id="choices">
+                <button id="rock" class="btn">✊</button>
+                <button id="paper" class="btn">✋</button>
+                <button id="scissors" class="btn">✌️</button>
+            </div>
         </div>
+
     </div>
 
+<script src="/socket.io/socket.io.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -1,137 +1,234 @@
+/* --- Global Reset & Couleurs --- */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Couleurs principales */
+:root {
+  --color-primary: #007bff; 
+  --color-dark: #2c3e50;    
+  --color-background: #34495e; 
+  --color-light: #ecf0f1;   
+  --color-win: #2ecc71;     
+  --color-lose: #e74c3c;    
+  --color-draw: #f1c40f;    
 }
 
 html, body {
   height: 100%;
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: var(--color-dark);
+  color: var(--color-light);
 }
 
+/* 🧱 Conteneur principal: Empile les éléments en colonne et centre l'ensemble */
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
   padding: 1rem;
+  width: 100%;
 }
 
+/* 🧱 Section de Jeu: Doit être un bloc pour prendre toute la largeur et empiler ses propres enfants */
+#game-area {
+    display: flex; /* Utiliser flex pour la disposition en colonne */
+    flex-direction: column;
+    align-items: center; /* Centre les éléments internes (score, guide, result, choices) */
+    width: 100%;
+    max-width: 700px; /* Limiter la largeur de la zone de jeu */
+}
+
+/* --- Section Score et Guide/Statut --- */
 .score {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  max-width: 600px;
-  margin-bottom: 2rem;
-  align-items: center;
-  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--color-background);
+  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.3); 
 }
 
-.guide {
-  margin-bottom: 2rem;
-  text-align: center;
+.score h1 {
   font-size: 1.5rem;
-  color: #555;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
-#result {
-  font-size: 1.8rem;
-  font-weight: bold;
+/* Les messages sont des blocs centrés par le parent #game-area */
+.guide, #status-message { 
+  display: block; 
+  width: 100%;
   text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-light);
+}
+
+/* --- Sélecteur de Mode (Conserve l'alignement central) --- */
+#mode-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3rem;
+  background: var(--color-background);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+#mode-selector h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.mode-btn {
+  width: 100%;
+  min-width: 350px;
+  padding: 1.5rem 1rem !important;
+  font-size: 1.2rem !important;
+  border: 2px solid var(--color-primary) !important;
+  color: var(--color-primary) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+  background-color: var(--color-primary) !important;
+  color: var(--color-light) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* --- Boutons de Choix --- */
+#choices {
+  display: flex; /* Utiliser flex pour centrer les boutons sur la même ligne */
+  justify-content: center; 
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  width: 100%; /* Permet au flex parent de le centrer */
+}
+
+.btn {
+  display: inline-block;
+  padding: 2rem;
+  min-width: 150px;
+  border: none;
+  border-radius: 15px;
+  background-color: var(--color-background);
+  font-size: 2.5rem;
+  color: var(--color-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: var(--color-primary);
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5); 
+}
+
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn:not(.mode-btn) {
+    font-size: 3rem; 
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Section Résultat --- */
+#result {
+  display: block; 
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: var(--color-background);
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+#result > div {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center; /* S'assurer que le texte de résultat est centré */
 }
 
 #result .emoji {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin: 1.5rem 0;
-  font-size: 2.5rem;
+  gap: 3rem;
+  margin: 2rem 0;
+  font-size: 4rem;
 }
 
+/* Bouton Continuer */
 #result #next {
-  padding: 1rem 2rem;
+  padding: 1rem 3rem;
   font-size: 1.2rem;
   border: none;
-  border-radius: 0.5rem;
-  background-color: #333;
-  color: #fff;
+  border-radius: 50px;
+  background-color: var(--color-primary);
+  color: var(--color-light);
   cursor: pointer;
-
-  /* ✅ centrer le bouton */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  
+  /* Centrage du bouton */
   display: block;
-  margin: 0 auto; /* centre horizontalement */
+  margin: 0 auto;
 }
 
 #result #next:hover {
-  background-color: #555;
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
-.draw {
-  color: #f39c12;
-}
+/* Styles de résultat (inchangés) */
+.draw { color: var(--color-draw); }
+.lose { color: var(--color-lose); }
+.win { color: var(--color-win); }
 
-.lose {
-  color: #e74c3c;
-}
-
-.win {
-  color: #27ae60;
-}
-
-#choices {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap; /* pour les petits écrans */
-}
-
-.btn {
-  display: inline-block;
-  padding: 1.5rem;
-  border: 2px solid #333;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  font-size: 1.2rem;
-  color: #333;
-  transition: all 0.2s ease;
-}
-
-.btn:hover {
-  background-color: #333;
-  color: #fff;
-  cursor: pointer;
-}
-
-.btn:active {
-  transform: scale(0.95);
-}
-
-/* ✅ Responsive pour petits écrans */
-@media (max-width: 600px) {
-  .guide {
-    font-size: 1.2rem;
+/* --- Responsive pour petits écrans --- */
+@media (max-width: 768px) {
+  .guide, #status-message {
+    font-size: 1.4rem;
   }
-
-  .btn {
-    padding: 1rem;
-    font-size: 1rem;
-  }
-
-  #result .emoji {
-    gap: 1rem;
-    font-size: 2rem;
-  }
-
-  #result #next {
-    width: 80%;
-    font-size: 1rem;
-  }
-
   .score {
     flex-direction: column;
     gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .score h1 {
+      font-size: 1.2rem;
+  }
+
+  .btn {
+    padding: 1.5rem;
+    font-size: 2rem;
+  }
+  
+  .mode-btn {
+      min-width: 90%;
+  }
+
+  #result .emoji {
+    gap: 1.5rem;
+    font-size: 3rem;
   }
 }
